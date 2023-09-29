@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .accordion-container {
+            width: 30%;
+        }
+
+        .accordion-wrapper {
+            border: 1px solid gray;
+            width: 100%;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid gray;
+            padding: 10px;
+        }
+
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-item-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .accordion-item-description {
+            padding: 10px 0px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="accordion-container">
+        <div class="accordion-wrapper">
+
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
