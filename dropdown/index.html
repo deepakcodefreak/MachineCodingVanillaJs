@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .drop-down-wrapper {
+            width: fit-content;
+            position: relative;
+        }
+
+        .drop-down-list {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            border: 1px solid black;
+            width: fit-content;
+            display: none;
+            width: fit-content;
+            position: absolute;
+        }
+
+        .selected-item {
+            border: 1px solid black;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .drop-down-list-item {
+            cursor: pointer;
+            border-bottom: 1px solid black;
+        }
+
+        .drop-down-list-item:last-child {
+            border-bottom: none;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="drop-down-wrapper" id="drop-down-wrapper">
+        <div class="selected-item">Choose your Fruit</div>
+        <ul class="drop-down-list">
+            <li class="drop-down-list-item" value="apple">Apple</li>
+            <li class="drop-down-list-item" value="mango">Mango</li>
+            <li class="drop-down-list-item" value="orange">Orange</li>
+            <li class="drop-down-list-item" value="pie">Pie</li>
+        </ul>
+    </div>
+
+    <script>
+        let selectedItemValue = ''
+        const selectedItem = document.querySelector('.selected-item')
+        const dropDownList = document.querySelector('.drop-down-list')
+
+        document.addEventListener('click', (e) => {
+            if (!dropDownList.contains(e.target)) {
+                dropDownList.style.display = 'none'
+            }
+        })
+
+        selectedItem.addEventListener('click', (e) => {
+            e.stopPropagation()
+            if (getComputedStyle(dropDownList).display === 'block') {
+                dropDownList.style.display = 'none'
+            } else {
+                dropDownList.style.display = 'block'
+                updateWidth(dropDownList.offsetWidth, parseFloat(getComputedStyle(selectedItem).width))
+            }
+        })
+
+        dropDownListItems = document.querySelectorAll('.drop-down-list-item')
+
+        dropDownListItems.forEach(dropdownListItem => {
+            dropdownListItem.addEventListener('click', (e) => {
+                selectedItemValue = dropdownListItem.getAttribute('value')
+                selectedItem.innerText = selectedItemValue
+                updateWidth(parseFloat(getComputedStyle(dropDownList).width), parseFloat(getComputedStyle(selectedItem).width))
+                dropDownList.style.display = 'none'
+            })
+        });
+
+        function updateWidth(a, b) {
+            const maxWidth = Math.max(a, b) + 'px';
+            selectedItem.style.width = maxWidth
+            dropDownList.style.width = maxWidth
+        }
+
+    </script>
+</body>
+
+</html>
