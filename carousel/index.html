@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <section aria-label="photos">
+        <div class="carousel">
+            <button class="carousel-btn-left" data-carousel-btn="prev">
+                <span class="material-symbols-outlined">
+                    chevron_left
+                </span>
+            </button>
+            <ul class="slides">
+                <li class="slide" data-active>
+                    <img class="carousel-slide-image"
+                        src="https://images.unsplash.com/photo-1611080402167-ed75bae6df32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2970&q=80"
+                        alt="">
+                </li>
+                <li class="slide">
+                    <img class="carousel-slide-image"
+                        src="https://images.unsplash.com/photo-1620414476107-2188707d780b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3174&q=80"
+                        alt="">
+                </li>
+                <li class="slide">
+                    <img class="carousel-slide-image"
+                        src="https://images.unsplash.com/photo-1610552050890-fe99536c2615?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3014&q=80"
+                        alt="">
+                </li>
+            </ul>
+            <button class="carousel-btn-right" data-carousel-btn="next">
+                <span class="material-symbols-outlined">
+                    chevron_right
+                </span>
+            </button>
+        </div>
+    </section>
+</body>
+
+<script src="./index.js"></script>
+
+</html>
