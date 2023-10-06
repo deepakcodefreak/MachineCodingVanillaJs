@@ -42,3 +42,27 @@
 .slide[data-active] {
     opacity: 1;
 }
+
+.dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+    width: fit-content;
+    height: 20px;
+}
+
+.dot {
+    display: block;
+    height: 15px;
+    width: 15px;
+    border-radius: 100%;
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.dot[data-activedot] {
+    background-color: gray
+}
