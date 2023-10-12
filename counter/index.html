@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .counter-wrapper {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            row-gap: 20px;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 20px;
+        }
+
+        .action-btn {
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="counter-wrapper">
+        <div class="counter"></div>
+        <div class="action-btns">
+            <button class="increment action-btn">Increment</button>
+            <button class="reset action-btn">Reset</button>
+            <button class="decrement action-btn">Decrement</button>
+        </div>
+    </div>
+    <script>
+        let counterValue = 0
+        const incrementBtn = document.querySelector('.increment');
+        const decrementBtn = document.querySelector('.decrement');
+        const resetBtn = document.querySelector('.reset')
+        function updateCounterUI() {
+            const counter = document.querySelector('.counter')
+            counter.innerHTML = counterValue
+        }
+        updateCounterUI()
+        incrementBtn.addEventListener('click', () => {
+            counterValue += 1
+            updateCounterUI()
+        })
+        decrementBtn.addEventListener('click', () => {
+            counterValue -= 1
+            updateCounterUI()
+        })
+        resetBtn.addEventListener('click', () => {
+            counterValue = 0;
+            updateCounterUI()
+        })
+    </script>
+</body>
+
+</html>
