@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+    <style>
+        .stopwatch-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            flex-direction: column;
+            row-gap: 20px;
+        }
+
+        .action-btns {
+            display: flex;
+            column-gap: 20px;
+        }
+
+        .time {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stopwatch-wrapper">
+        <div class="time">
+            00 : 00 : 00 : 000
+        </div>
+        <div class="action-btns">
+            <button class="start">Start</button>
+            <button class="pause">Pause</button>
+            <button class="reset">Reset</button>
+        </div>
+    </div>
+</body>
+<script src="./index.js"></script>
+
+</html>
