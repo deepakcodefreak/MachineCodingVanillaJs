@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circular Progress Bar</title>
+    <style>
+        .circular-progress-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            flex-direction: column;
+        }
+
+        .circular-progress {
+            transform: rotate(-90deg);
+        }
+
+        .track {
+            fill: none;
+            stroke: lightgray;
+            stroke-width: 25px;
+        }
+
+        .progress {
+            fill: none;
+            stroke: red;
+            stroke-width: 25px;
+            stroke-dasharray: 628;
+            stroke-dashoffset: 60;
+            transition: all 0.5s ease-in;
+        }
+
+        .percent {
+            font-size: 24px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .circular-progress-container {
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="circular-progress-wrapper">
+        <div class="circular-progress-container">
+            <svg width="250" height="250" class="circular-progress">
+                <circle r="100" cx="125" cy="125" class="track" />
+                <circle r="100" cx="125" cy="125" class="progress" />
+            </svg>
+            <div class="percent">12%</div>
+        </div>
+        <input type="range" min="1" max="100" class="range" value="10">
+    </div>
+</body>
+<script>
+    const percentContainer = document.querySelector('.percent')
+    let percent = '10'
+    percentContainer.innerHTML = percent + '%'
+    const progressCircle = document.querySelector('.progress')
+    const radius = progressCircle.r.baseVal.value;
+    const circumference = 2 * Math.PI * radius;
+    progressCircle.style.strokeDasharray = circumference
+    progressCircle.style.strokeDashoffset = circumference - (percent / 100 * circumference)
+
+    const range = document.querySelector('.range')
+    range.addEventListener('change', (e) => {
+        percent = e.target.value;
+        percentContainer.innerHTML = percent + '%'
+        progressCircle.style.strokeDashoffset = circumference - (e.target.value / 100 * circumference)
+    })
+
+</script>
+
+</html>
