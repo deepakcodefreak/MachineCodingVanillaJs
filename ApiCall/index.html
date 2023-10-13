@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch and show data in vanilla js</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .users-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .users-list {
+            padding: 0;
+            list-style: none;
+        }
+
+        .list-item {
+            border: 1px solid lightgray;
+            padding: 10px;
+        }
+
+        .list-item-row {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="users-wrapper">
+        <ul class="users-list">
+            <h1>Users List</h1>
+        </ul>
+    </div>
+</body>
+<script>
+    (async function fetchUsers() {
+        const usersList = document.querySelector('.users-list')
+        const res = await fetch('https://jsonplaceholder.typicode.com/users')
+        const users = await res.json()
+        users.forEach(user => {
+            const listItem = document.createElement('li')
+            listItem.setAttribute('class', 'list-item')
+            listItem.innerHTML = `
+                <div class="list-item-row">
+                    <div>${user.name}</div>
+                    <div>${user.email}</div>
+                </div>
+                <div class="list-item-row">
+                    <div>${user.phone}</div>
+                    <div>${user.email}</div>
+                </div>`
+            usersList.appendChild(listItem)
+
+        });
+    })()
+</script>
+
+</html>
