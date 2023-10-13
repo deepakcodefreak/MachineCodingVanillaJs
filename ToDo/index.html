@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <style>
+        .todo-list-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .todo-list-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .todo-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .list-item {
+            background-color: lightgray;
+            padding: 4px;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .delete-list-item,
+        .edit-list-item {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .edit-list-item-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-container {
+            display: flex;
+            flex-direction: column;
+            row-gap: 15px;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="todos-app">
+        <div class="todo-list-wrapper">
+            <h1>Todos</h1>
+            <div class="todo-list-container">
+                <input type="text" class="input-todo">
+                <ul class="todo-list">
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./index.js"></script>
+
+</html>
