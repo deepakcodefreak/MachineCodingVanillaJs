@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Complete</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .auto-complete-wrapper {
+            position: relative;
+        }
+
+        .suggestions {
+            position: absolute;
+        }
+
+        ul {
+            padding: 0;
+            list-style: none;
+            width: 100%;
+            top: 12px;
+            border: 1px solid lightgray;
+            border-bottom: none;
+        }
+
+        li {
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        li {
+            border-bottom: 1px solid lightgray;
+        }
+
+        .suggestions {
+            display: none;
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <div class="auto-complete-wrapper">
+        <input type="text" class="text-input">
+        <ul class="suggestions"></ul>
+    </div>
+</body>
+<script>
+    const pastSearches = ['hey i am deepak', 'hello guys', 'youtube video', 'google', 'zebra', 'hey i am deepak', 'hello guys']
+    const autoCompleteWrapper = document.querySelector('.auto-complete-wrapper')
+    const input = document.querySelector('.text-input')
+    document.querySelector('.text-input').addEventListener('keydown', (e) => {
+        const suggestions = document.querySelector('.suggestions')
+        suggestions.style.display = 'block'
+        suggestions.innerHTML = ''
+        suggestions.setAttribute('class', 'suggestions')
+        const filteredSuggestions = pastSearches.filter((item) => item.includes(input.value))
+        filteredSuggestions.forEach((suggestionText) => {
+            const suggestionItem = document.createElement('li')
+            suggestionItem.innerText = suggestionText;
+            suggestionItem.addEventListener('click', (e) => {
+                input.value = e.target.innerText
+                suggestions.style.display = 'none'
+            })
+            suggestions.appendChild(suggestionItem)
+        })
+    })
+
+</script>
+
+</html>
