@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poll Widget</title>
+    <style>
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
+        }
+
+        li {
+            display: flex;
+            width: 300px;
+            column-gap: 10px;
+        }
+
+        .candidate-name {
+            width: 120px;
+        }
+
+        .vote-cast {
+            width: 100%;
+            background-color: lightgray;
+            border: 1px solid gray;
+        }
+
+        .vote-percent {
+            background-color: lightgreen;
+            height: 100%;
+            width: 0%;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="polls-wrapper">
+    </ul>
+</body>
+<script>
+    const pollsData = {
+        'apple': 0,
+        'banana': 0,
+        'pineapple': 0,
+        'lichi': 0,
+    }
+    const pollsWrapper = document.querySelector('.polls-wrapper')
+    Object.keys(pollsData).forEach(element => {
+        const candidate = document.createElement('li')
+        candidate.innerHTML = `
+            <div class='candidate-name'>${element}</div>
+            <div class='vote-cast'>
+                <div class='vote-percent'></div>
+            </div>
+        `
+        const voteBtn = document.createElement('button')
+        voteBtn.addEventListener('click', () => {
+            pollsData[element] += 1;
+            updatePollPercentage()
+        })
+        voteBtn.innerText = 'Vote'
+        candidate.appendChild(voteBtn)
+        pollsWrapper.appendChild(candidate)
+    });
+
+    function updatePollPercentage() {
+        Array.from(pollsWrapper.children).forEach(element => {
+            const candidateName = element.querySelector('.candidate-name').innerText;
+            const votePercent = element.querySelector('.vote-percent')
+            const totalVotesCasted = Object.values(pollsData).reduce((a, b) => a + b, 0)
+            votePercent.style.width = `${Math.floor((pollsData[candidateName] / totalVotesCasted) * 100)}%`
+        })
+    }
+</script>
+
+</html>
