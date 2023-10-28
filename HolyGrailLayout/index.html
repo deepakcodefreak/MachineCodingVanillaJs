@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holy Grail Layout</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .grid-wrapper {
+            display: grid;
+            grid-template: auto 1fr auto / auto 1fr auto;
+            justify-items: center;
+        }
+
+        .grid-wrapper>* {
+            height: 200px;
+        }
+
+        .header {
+            grid-row-start: 1;
+            grid-row-end: 2;
+            grid-column-start: 1;
+            grid-column-end: 4;
+            align-self: center;
+        }
+
+        .footer {
+            grid-row-start: 3;
+            grid-row-end: 3;
+            grid-column-start: 1;
+            grid-column-end: 4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-wrapper">
+        <header class="header">Header</header>
+        <div class="left-sidebar">Left side content</div>
+        <main class="body">Body sdsd dsdsds sdsd sdsdsd sdsds ds dsds</main>
+        <div class="right-sidebar">Right</div>
+        <footer class="footer">Footer</footer>
+    </div>
+</body>
+
+</html>
