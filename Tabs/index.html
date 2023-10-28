@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs</title>
+    <style>
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tabs-wrapper {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border: 1px solid lightgray;
+            padding: 10px;
+            display: flex;
+            gap: 20px;
+        }
+
+        li {
+            padding: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <ul class="tabs-wrapper">
+        </ul>
+        <div class="description">
+        </div>
+    </div>
+</body>
+<script>
+    const tabsData = [
+        {
+            title: 'Tab 1',
+            description: 'Tab 1 is active'
+        },
+        {
+            title: 'Tab 2',
+            description: 'Tab 2 is active'
+        },
+        {
+            title: 'Tab 3',
+            description: 'Tab 3 is active'
+        },
+    ]
+    let selectedTabIndex = -1;
+    const tabsWrapper = document.querySelector('.tabs-wrapper')
+    const description = document.querySelector('.description')
+    tabsData.forEach((tabData, index) => {
+        const tab = document.createElement('li')
+        tab.setAttribute('class', `index-${index}`)
+        tab.innerText = tabData.title;
+        tab.addEventListener('click', () => {
+            selectTab(index)
+        })
+        tabsWrapper.appendChild(tab)
+    })
+
+    function unselectTab(tabIndex) {
+        const selectedTabInDom = document.querySelector(`.index-${tabIndex}`)
+        selectedTabInDom.style.backgroundColor = 'white'
+        selectedTabInDom.style.color = 'black';
+    }
+
+    function selectTab(tabIndex) {
+        selectedTabIndex = tabIndex;
+        const selectedTabInDom = document.querySelector(`.index-${tabIndex}`)
+        selectedTabInDom.style.backgroundColor = 'gray'
+        selectedTabInDom.style.color = 'white';
+        description.innerText = tabsData[selectedTabIndex].description
+        Array.from(tabsWrapper.children).forEach((tab, i) => {
+            if (i !== selectedTabIndex) {
+                unselectTab(i)
+            }
+        })
+    }
+
+    selectTab(0)
+
+</script>
+
+</html>

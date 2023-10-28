@@ -4,75 +4,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto Complete</title>
+    <title>Auto complete</title>
     <style>
         body {
+            height: 100vh;
+            width: 100vw;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            width: 100vw;
         }
 
-        .auto-complete-wrapper {
+        .input-wrapper {
             position: relative;
+            width: 200px;
         }
 
-        .suggestions {
+        .input-text {
             position: absolute;
+            font-family: 'Times New Roman', Times, serif;
+            letter-spacing: 1px;
+            font-size: 18px;
+            border: 1px solid black;
+            z-index: 10;
+            width: 200px;
+
         }
 
-        ul {
-            padding: 0;
-            list-style: none;
-            width: 100%;
-            top: 12px;
-            border: 1px solid lightgray;
-            border-bottom: none;
-        }
-
-        li {
-            padding: 5px;
-            cursor: pointer;
-        }
-
-        li {
-            border-bottom: 1px solid lightgray;
-        }
-
-        .suggestions {
-            display: none;
+        .suggestion-text {
+            position: absolute;
+            font-family: 'Times New Roman', Times, serif;
+            margin-left: 1px;
+            margin-top: 1px;
+            letter-spacing: 1px;
+            font-size: 18px;
+            color: lightgray;
+            width: fit-content;
         }
     </style>
 </head>
 
-
-
 <body>
-    <div class="auto-complete-wrapper">
-        <input type="text" class="text-input">
-        <ul class="suggestions"></ul>
-    </div>
+    <div class="input-wrapper">
+        <div contenteditable="true" class="input-text" type="text">
+        </div>
+        <div class="suggestion-text"></div>
 </body>
+
 <script>
-    const pastSearches = ['hey i am deepak', 'hello guys', 'youtube video', 'google', 'zebra', 'hey i am deepak', 'hello guys']
-    const autoCompleteWrapper = document.querySelector('.auto-complete-wrapper')
-    const input = document.querySelector('.text-input')
-    document.querySelector('.text-input').addEventListener('keydown', (e) => {
-        const suggestions = document.querySelector('.suggestions')
-        suggestions.style.display = 'block'
-        suggestions.innerHTML = ''
-        suggestions.setAttribute('class', 'suggestions')
-        const filteredSuggestions = pastSearches.filter((item) => item.includes(input.value))
-        filteredSuggestions.forEach((suggestionText) => {
-            const suggestionItem = document.createElement('li')
-            suggestionItem.innerText = suggestionText;
-            suggestionItem.addEventListener('click', (e) => {
-                input.value = e.target.innerText
-                suggestions.style.display = 'none'
-            })
-            suggestions.appendChild(suggestionItem)
-        })
+    const fruits = ['apple', 'banana', 'pineapple', 'fruits', 'lichi', 'baby banana', 'baby corn']
+    const inputEl = document.querySelector('.input-text')
+    const suggestionEl = document.querySelector('.suggestion-text')
+    inputEl.addEventListener('input', (e) => {
+        const inputTerm = e.target.innerText;
+        const suggestions = fruits.filter((fruit) => fruit.includes(inputTerm))
+        suggestionEl.innerText = ''
+        if (suggestions.length > 0) {
+            suggestionEl.innerText = suggestions[0]
+        }
+    })
+    inputEl.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault()
+            inputEl.innerText = suggestionEl.innerText
+        }
+    })
+
+    inputEl.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab' || e.key === 'ArrowRight') {
+            e.preventDefault()
+            inputEl.innerText = suggestionEl.innerText
+        }
     })
 
 </script>
