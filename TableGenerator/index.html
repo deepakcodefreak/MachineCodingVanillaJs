@@ -52,6 +52,9 @@
     const columns = document.getElementById('columns')
     const rows = document.getElementById('rows')
     const table = document.querySelector('.table')
+    let colTimer = null
+    let rowTimer = null
+
 
     function renderColumns() {
         table.innerHTML = ''
@@ -71,14 +74,25 @@
     }
 
     columns.addEventListener('input', (e) => {
-        renderColumns()
+        if (colTimer === null) {
+            renderColumns();
+            colTimer = setTimeout(() => {
+                colTimer = null;
+            }, 1000);
+        } else {
+            clearTimeout(colTimer)
+            colTimer = setTimeout(() => {
+                renderColumns()
+                colTimer = null;
+            }, 1000);
+        }
     })
 
-    rows.addEventListener('input', (e) => {
+    function renderRows() {
         table.innerHTML = ''
         renderColumns();
         const totalCols = columns.value
-        const totalRows = e.target.value
+        const totalRows = rows.value
         if (totalRows < 1 || totalRows > 50) {
             alert('Rows can be between 1 to 50')
             return;
@@ -92,6 +106,22 @@
             }
             table.appendChild(row)
         }
+    }
+
+    rows.addEventListener('input', (e) => {
+        if (rowTimer === null) {
+            renderRows();
+            rowTimer = setTimeout(() => {
+                rowTimer = null;
+            }, 1000);
+        } else {
+            clearTimeout(rowTimer)
+            rowTimer = setTimeout(() => {
+                renderRows()
+                rowTimer = null;
+            }, 1000);
+        }
+
 
     })
 
