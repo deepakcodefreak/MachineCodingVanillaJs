@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Generator</title>
+    <style>
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            row-gap: 30px;
+        }
+
+        .wrapper {
+            display: flex;
+            column-gap: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 5px;
+            height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div>
+            <div>
+                Columns
+            </div>
+            <input type="number" name="columns" id="columns">
+        </div>
+        <div>
+            <div>
+                Rows
+            </div>
+            <input type="number" name="rows" id="rows">
+        </div>
+    </div>
+    <table class="table">
+    </table>
+</body>
+<script>
+    const columns = document.getElementById('columns')
+    const rows = document.getElementById('rows')
+    const table = document.querySelector('.table')
+
+    function renderColumns() {
+        table.innerHTML = ''
+        const totalCols = columns.value
+        if (totalCols < 1 || totalCols > 50) {
+            alert('Columns can be between 1 to 50')
+            return;
+        }
+        const headingRow = document.createElement('tr')
+        for (let i = 1; i <= totalCols; i++) {
+            const th = document.createElement('th')
+            th.innerText = `Heading ${i}`
+            th.setAttribute('contenteditable', 'true')
+            headingRow.appendChild(th)
+        }
+        table.appendChild(headingRow)
+    }
+
+    columns.addEventListener('input', (e) => {
+        renderColumns()
+    })
+
+    rows.addEventListener('input', (e) => {
+        table.innerHTML = ''
+        renderColumns();
+        const totalCols = columns.value
+        const totalRows = e.target.value
+        if (totalRows < 1 || totalRows > 50) {
+            alert('Rows can be between 1 to 50')
+            return;
+        }
+        for (let r = 1; r <= totalRows; r++) {
+            const row = document.createElement('tr')
+            for (let c = 1; c <= totalCols; c++) {
+                const td = document.createElement('td')
+                td.setAttribute('contenteditable', 'true')
+                row.appendChild(td)
+            }
+            table.appendChild(row)
+        }
+
+    })
+
+</script>
+
+</html>
